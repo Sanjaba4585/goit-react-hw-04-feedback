@@ -1,26 +1,25 @@
+import { useState } from 'react';
 import { Section } from 'components/Section/Section';
 import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 import { Statistics } from 'components/Statistics/Statistics';
 import { Notification } from 'components/Notification/Notification';
-import { useState } from 'react';
-import css from './App.module.css';
+import { Container } from './App.styled';
 
-export const App = () => {
+const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  const onLeaveFeedback = e => {
-    const { name } = e.target;
-    switch (name) {
+  const onLeaveFeedback = option => {
+    switch (option) {
       case 'good':
-        setGood(prevGood => prevGood + 1);
+        setGood(prevState => prevState + 1);
         break;
       case 'neutral':
-        setNeutral(prevNeutral => prevNeutral + 1);
+        setNeutral(prevState => prevState + 1);
         break;
       case 'bad':
-        setBad(prevBad => prevBad + 1);
+        setBad(prevState => prevState + 1);
         break;
       default:
         break;
@@ -31,18 +30,17 @@ export const App = () => {
     return good + bad + neutral;
   };
 
-  const countPositiveFeedbackPercentage = () => {
-    return totalFeedback ? Math.round((good * 100) / totalFeedback) : 0;
-  };
+  const countPositiveFeedbackPercentage = () =>
+    Math.round((good / countTotalFeedback()) * 100 || 0);
 
   const totalFeedback = countTotalFeedback();
   const positivePercentage = countPositiveFeedbackPercentage();
 
   return (
-    <div className={css.wrapper}>
+    <Container>
       <Section title="Please leave feedback">
         <FeedbackOptions
-          options={['good', 'neutral', 'bad']}
+          options={Object.keys(['good', 'neutral', 'bad'])}
           onLeaveFeedback={onLeaveFeedback}
         />
       </Section>
@@ -59,6 +57,7 @@ export const App = () => {
           <Notification message="There is no feedback" />
         )}
       </Section>
-    </div>
+    </Container>
   );
 };
+export default App;

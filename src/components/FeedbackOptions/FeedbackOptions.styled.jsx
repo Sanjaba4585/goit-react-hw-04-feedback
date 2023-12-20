@@ -1,11 +1,13 @@
-.FeedbackWrapper {
+import styled from 'styled-components';
+
+export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-}
+`;
 
-.button {
+export const Button = styled.button`
   width: 100px;
   font-size: 20px;
   padding: 5px;
@@ -18,4 +20,4 @@
     background-color: blue;
     cursor: pointer;
   }
-}
+`;

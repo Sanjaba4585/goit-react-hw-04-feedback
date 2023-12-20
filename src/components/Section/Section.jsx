@@ -1,10 +1,10 @@
-import css from './Section.module.css';
+import { SectionTitle, SectionWrap } from './Section.styled';
 
 export const Section = ({ title, children }) => {
   return (
-    <Section>
-      <h2 className={css.title}>{title}</h2>
+    <SectionWrap>
+      <SectionTitle>{title}</SectionTitle>
       {children}
-    </Section>
+    </SectionWrap>
   );
 };

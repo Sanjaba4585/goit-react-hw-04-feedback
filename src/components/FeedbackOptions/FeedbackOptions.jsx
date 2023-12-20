@@ -1,17 +1,17 @@
-import css from './FeedbackOptions.module.css';
+import { Button, Wrapper } from './FeedbackOptions.styled';
+
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
-    <div className={css.FeedbackWrapper}>
+    <Wrapper>
       {options.map(option => (
-        <button
-          className={css.button}
+        <Button
           key={option}
           type="button"
           onClick={() => onLeaveFeedback(option)}
         >
           {option}
-        </button>
+        </Button>
       ))}
-    </div>
+    </Wrapper>
   );
 };
